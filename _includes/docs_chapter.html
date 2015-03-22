@@ -1,0 +1,49 @@
+{% assign items = include.items %}
+
+{% comment %}Grabbing the folder out of the current page we are in {% endcomment %}
+{% assign url_parts = page.url | split: '/' %}
+{% assign rm = url_parts | last | prepend: '/' %}
+{% assign base_url = page.url | replace: rm %}
+{% assign chapter_url = items.url | prepend: '/' %}
+{% if chapter_url == base_url %}
+  {% assign c = 'chapter-open' %}
+{% else %}
+  {% assign c = '' %}
+{% endif %}
+
+<ul class="chapter {{c}}"> 
+{% assign current_chapter = items.url %}
+{% assign current_section = items.url | split: '/' | first %}
+{% assign collection = site.[current_section] %}
+{% for p in collection %}
+  {% assign url_parts = p.url | split: '/' %}
+  {% assign rm = url_parts | last | prepend: '/' %}
+  {% assign base_url = p.url | replace: rm %}
+  {% assign item_url = items.url | prepend: '/' %}
+  {% assign full_url = site.baseurl | append: p.url %}
+
+  {% if p.url == page.url %}
+    {% assign c = "active" %}
+  {% else %}
+    {% assign c = "" %}
+  {% endif %}
+  {% if item_url == base_url %}
+    <li><a class="sidebar-nav-item {{c}}" href="{{full_url}}">{{ p.title }}</a></li>
+  {% endif %}
+{% endfor %}
+</ul>
+
+{% comment %}
+  We could also loop trough a list of documents to attach to the list specified in the .yml data file. Plus side of that would be:
+   - We could specify the order of files in there
+   - Would have to loop less times through the articles (now every header goes through all articles by looping the whole site collection separately
+  Negative side:
+   - If we just add a new md file, it wouldn't get listed anywhere automatically. We would have to remember to add it to the yml file to see it. Now they get automically listed as long as the md file has a front matter.
+
+  The code for listing those mentioned in .yml would be something like:
+  {% for item in items.docs %}
+    {% assign item_url = item | prepend:"/book/" | append:"/" %}
+    ...
+    show link for item
+  {% endfor %}
+{% endcomment %}

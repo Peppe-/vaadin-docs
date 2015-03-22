@@ -1,0 +1,61 @@
+- title: Book of Vaadin
+  url: book
+  subpages: 
+  - title: Volume 1
+    url: book/vol1
+    docs:
+    - chapter-application
+    - chapter-architecture
+    - chapter-components
+    - chapter-getting-started
+    - chapter-introduction
+    - chapter-layout
+  - title: Volume 2
+    url: book/vol2
+    docs:
+    - chapter-addons
+    - chapter-advanced
+    - chapter-charts
+    - chapter-clientside
+    - chapter-clientsideapp
+    - chapter-clientsidewidgets
+    - chapter-datamodel
+    - chapter-eclipse
+    - chapter-gwt
+    - chapter-jpacontainer
+    - chapter-mobile
+    - chapter-portal
+    - chapter-spreadsheet
+    - chapter-sqlcontainer
+    - chapter-testbench
+    - chapter-themes
+- title: Vaadin Components
+  url: components
+  subpages: 
+  - title: Getting started
+    url: components/getting-started
+    docs:
+  - title: Articles
+    url: components/articles
+    docs:
+  - title: Components
+    url: components/components
+    docs:
+- title: Valo
+  url: valo
+  subpages: 
+  - title: Tutorials
+    url: valo/tutorials
+    docs:
+  - title: Reference
+    url: valo/reference
+    docs:
+- title: Designer
+  url: designer
+  subpages: 
+  - title: Tutorials
+    url: valo/tutorials
+    docs:
+  - title: Reference
+    url: valo/reference
+    docs:

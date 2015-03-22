@@ -1,0 +1,18 @@
+---
+layout: default
+title: Home
+---
+<h2>Vaadin is a Java framework for building modern web applications that look great, perform well and make you and your users happy.</h2>
+
+<h4>Pages available under book</h4>
+<ul>
+{% for page in site.collections.book.docs %}
+  <li><a href="{{site.baseurl}}{{ page.url }}">{{page.url}} -- {{ page.title }}</a></li>
+{% endfor %}
+</ul>
+<h4>Other pages on the site</h4>
+<ul>
+{% for page in site.pages %}
+  <li><a href="{{site.baseurl}}{{ page.url }}">{{page.url}} -- {{ page.title }}</a></li>
+{% endfor %}
+</ul>

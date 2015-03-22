@@ -1,0 +1,31 @@
+# Dependencies
+markdown:         kramdown
+highlighter:      pygments
+
+# Permalinks
+permalink:        pretty
+relative_permalinks: true
+
+# Setup
+title:            Vaadin
+tagline:          'Vaadin Documentation'
+description:      'Documentation for ALL things related to Vaadin'
+url:              http://vaadin.com
+#baseurl:          
+baseurl:          https://dl.dropboxusercontent.com/u/1623129/vaadin-docs
+
+author:
+  name:           'Jens Jansson'
+  url:            https://vaadin.com/
+
+paginate:         5
+
+# Custom vars
+version:          0.0.0-SNAPSHOT
+
+github:
+  repo:           https://github.com/peppe-/
+
+collections:
+  book:
+    output: true

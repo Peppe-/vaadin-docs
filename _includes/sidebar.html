@@ -1,0 +1,92 @@
+<div class="sidebar">
+  <div class="container">
+    <div class="sidebar-about">
+      <h1>
+        {% assign main_page = site.baseurl | append: '/index.html' %}
+        <a href="{{ main_page }}">
+          {{ site.title }}
+        </a>
+      </h1>
+      <p class="lead">{{ site.description }}</p>
+    </div>
+    {% comment %}
+    {% for article in {{site.book | sort: 'order'}} %}
+      <li><a href='{{article.url}}'>{{article.title}}</a></li>
+    {% endfor %}
+    {% endcomment %}
+
+    <nav class="sidebar-nav">
+      {% for section in site.data.docs %}
+        {% assign url_parts = page.url | split: '/' %}
+        {% assign current_section = url_parts[1] %}
+        {% if section.url == current_section %}
+          {% assign c = ' active' %}
+          {% assign i = 'down' %}
+        {% else %}
+          {% assign c = '' %}
+          {% assign i = 'right' %}
+        {% endif %}
+        <div class="sidebar-nav-item section-header{{c}}">{{ section.title }} <i class="fa fa-chevron-{{i}}"></i></div>
+        {% include docs_section.html items=section %}
+      {% endfor %}
+      <script>
+        /* Sections */
+        $(".section-header").click(function() {
+          $(".section-open").removeClass("section-open");
+          $(".section-header i.fa-chevron-down").removeClass("fa-chevron-down").addClass("fa-chevron-right");
+          $( this ).next().addClass("section-open");
+          $( this ).find("i").removeClass("fa-chevron-right").addClass("fa-chevron-down");
+        });
+        /*$( ".section-header" ).next().addClass( "open" );*/
+      
+        /* Chapters */  
+        $(".chapter-header").click(function() {
+          $(".chapter-open").removeClass("chapter-open");
+          $(".chapter-header i.fa-chevron-down").removeClass("fa-chevron-down").addClass("fa-chevron-right");
+          $( this ).next().addClass("chapter-open");
+          $( this ).find("i").removeClass("fa-chevron-right").addClass("fa-chevron-down");
+        });
+      </script>
+
+      </div>
+      <p>--</p>
+      {% assign relativeurlnoslash = 'index.html' %}
+      {% assign relativeurl = relativeurlnoslash | prepend: '/'  %}
+      {% assign pageurl = site.baseurl | append: relativeurl %}
+      <a class="sidebar-nav-item{% if page.url == '/' %} active{% endif %}" href="{{pageurl}}">Home</a>
+      {% assign relativeurlnoslash = 'book/appendix-vaadin6-migration.html' %}
+      {% assign relativeurl = relativeurlnoslash | prepend: '/'  %}
+      {% assign pageurl = site.baseurl | append: relativeurl %}
+      <a class="sidebar-nav-item{% if page.url == relativeurl %} active{% endif %}" href="{{pageurl}}">Migrating from Vaadin 6</a>
+      {% assign relativeurlnoslash = 'book/book-info.html' %}
+      {% assign relativeurl = relativeurlnoslash | prepend: '/'  %}
+      {% assign pageurl = site.baseurl | append: relativeurl %}
+      <a class="sidebar-nav-item{% if page.url == relativeurl %} active{% endif %}" href="{{pageurl}}">Book Info</a>
+      {% assign relativeurlnoslash = 'book/book-preface.html' %}
+      {% assign relativeurl = relativeurlnoslash | prepend: '/'  %}
+      {% assign pageurl = site.baseurl | append: relativeurl %}
+      <a class="sidebar-nav-item{% if page.url == relativeurl %} active{% endif %}" href="{{pageurl}}">Preface</a>
+      {% assign relativeurlnoslash = 'book/chapter-vaadin.html' %}
+      {% assign relativeurl = relativeurlnoslash | prepend: '/'  %}
+      {% assign pageurl = site.baseurl | append: relativeurl %}
+      <a class="sidebar-nav-item{% if page.url == relativeurl %} active{% endif %}" href="{{pageurl}}">
+      Songs of Vaadin</a>
+      {% comment %}
+        This is the old listing of everything with 'page' style. 
+
+        The code below dynamically generates a sidebar nav of pages with
+        `layout: page` in the front-matter. See readme for usage.
+
+        {% assign pages = site.book | sort:"order" %}
+        {% for node in pages %}
+          {% if node.title != null %}
+            {% if node.layout == "page" %}
+              <a class="sidebar-nav-item{% if page.url == node.url %} active{% endif %}" href="{{ node.url }}">{{ node.title }}</a>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      {% endcomment %}
+      
+    </nav>
+  </div>
+</div>
